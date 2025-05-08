@@ -1,6 +1,5 @@
 import timeit
-import matplotlib.pyplot as plt
-import math  # Импортируем библиотеку для факториала
+import math
 # Рекурсивная функция
 def F_recursive(n):
     if n < 2:
@@ -13,7 +12,6 @@ def F_recursive(n):
 def F_iterative(n):
     if n < 2:
         return 3
-    # Начальные значения для F(n-5) до F(n-1)
     F = [3] * 6
     factorial_i = 1
     factorial_2i = 1
@@ -47,16 +45,5 @@ def main():
     print("-" * 80)
     for n, recursive_result, iterative_result in results:
         print(f"{n} | {recursive_result:.15e} | {iterative_result:.15e} | {recursive_times[n]:.6f} | {iterative_times[n]:.6f}")
-    # График сравнения времени выполнения
-    plt.figure(figsize=(10, 5))
-    plt.plot(range(max_n + 1), recursive_times, label='Рекурсивный метод')
-    plt.plot(range(max_n + 1), iterative_times, label='Итеративный метод')
-    plt.xlabel('n')
-    plt.ylabel('Время выполнения (с)')
-    plt.title('Сравнение времени выполнения рекурсивного и итеративного методов')
-    plt.legend()
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
 if __name__ == "__main__":
     main()
