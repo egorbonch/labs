@@ -1,0 +1,62 @@
+import timeit
+import matplotlib.pyplot as plt
+import math  # Импортируем библиотеку для факториала
+# Рекурсивная функция
+def F_recursive(n):
+    if n < 2:
+        return 3
+    factorial_n = math.factorial(n)
+    factorial_2n = math.factorial(2 * n)
+    sign = -1 if n % 2 else 1
+    return sign * ((F_recursive(n - 1) / factorial_n) + (F_recursive(max(0, n - 5)) / factorial_2n))
+# Итеративная функция
+def F_iterative(n):
+    if n < 2:
+        return 3
+    # Начальные значения для F(n-5) до F(n-1)
+    F = [3] * 6
+    factorial_i = 1
+    factorial_2i = 1
+    for i in range(2, n + 1):
+        factorial_i *= i
+        factorial_2i *= (2 * i - 1) * (2 * i)
+        F_next = (-1 if i % 2 else 1) * ((F[-1] / math.factorial(i)) + (F[-5] / math.factorial(2 * i)))
+        F.append(F_next)
+    return F[-1]
+# Сравнение методов
+def compare_methods(max_n):
+    recursive_times = []
+    iterative_times = []
+    results = []
+    for n in range(max_n + 1):
+        recursive_timer = timeit.Timer(lambda: F_recursive(n))
+        recursive_time = recursive_timer.timeit(number=1)
+        recursive_times.append(recursive_time)
+        iterative_timer = timeit.Timer(lambda: F_iterative(n))
+        iterative_time = iterative_timer.timeit(number=1)
+        iterative_times.append(iterative_time)
+        recursive_result = F_recursive(n)
+        iterative_result = F_iterative(n)
+        results.append((n, recursive_result, iterative_result))
+    return recursive_times, iterative_times, results
+def main():
+    max_n = 20
+    recursive_times, iterative_times, results = compare_methods(max_n)
+    print("Таблица результатов:")
+    print("n | Рекурсивное значение | Итеративное значение | Время рекурсии (с) | Время итерации (с)")
+    print("-" * 80)
+    for n, recursive_result, iterative_result in results:
+        print(f"{n} | {recursive_result:.15e} | {iterative_result:.15e} | {recursive_times[n]:.6f} | {iterative_times[n]:.6f}")
+    # График сравнения времени выполнения
+    plt.figure(figsize=(10, 5))
+    plt.plot(range(max_n + 1), recursive_times, label='Рекурсивный метод')
+    plt.plot(range(max_n + 1), iterative_times, label='Итеративный метод')
+    plt.xlabel('n')
+    plt.ylabel('Время выполнения (с)')
+    plt.title('Сравнение времени выполнения рекурсивного и итеративного методов')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+if __name__ == "__main__":
+    main()
