@@ -128,7 +128,7 @@ def reset_game():
     """Сброс игры"""
     global board, current_player
     
-    board = [' ' for _ in range(9)]
+    board = [' ' for i in range(9)]
     current_player = 'X'
     
     for button in buttons:
@@ -141,3 +141,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
