@@ -1,20 +1,18 @@
 import tkinter as tk
 from tkinter import messagebox
-
-
-window = tk.Tk()
+okno = tk.Tk()
 board = [' ' for i in range(9)]
 current_player = 'X'
 buttons = []
 
 def create_board():
     """Создание игрового поля"""
-    window.title("Крестики-нолики")
+    okno.title("Крестики-нолики")
     
     for i in range(3):
         for j in range(3):
             index = 3 * i + j
-            button = tk.Button(window, text='', font=('Arial', 20), width=5, height=2,
+            button = tk.Button(okno, text='', font=('Arial', 20), width=5, height=2,
                              command=lambda idx=index: make_move(idx))
             button.grid(row=i, column=j)
             buttons.append(button)
@@ -137,8 +135,9 @@ def reset_game():
 def main():
     """Основная функция"""
     create_board()
-    window.mainloop()
+    okno.mainloop()
 
 if __name__ == "__main__":
     main()
+
 
