@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бунчеев Егор - Студент УлГТУ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A6FA5;
+            --secondary: #6B8CBC;
+            --accent: #88A0C2;
+            --light: #F5F7FA;
+            --dark: #2C3E50;
+            --text: #5D6D7E;
+            --card-bg: #FFFFFF;
+            --transition: all 0.3s ease;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after { width: 100%; }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.1) 0%, rgba(107, 140, 188, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-text { max-width: 500px; }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-image { text-align: center; }
+        
+        .profile-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover { transform: translateY(-2px); }
+        
+        section { padding: 80px 0; }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-subtitle {
+            color: var(--text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background: var(--accent);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover { transform: translateY(-5px); }
+        
+        .service-title {
+            font-size: 1.3rem;
+            margin: 15px 0 10px;
+            color: var(--dark);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-title {
+            font-size: 1.1rem;
+            margin: 15px 0 5px;
+            color: var(--dark);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content, .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-title { font-size: 2.5rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Егор Б.</div>
+            <ul class="nav-links">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">Студент 2-го курса УлГТУ</span>
+                <h1 class="hero-title">Разработчик и аналитик</h1>
+                <p class="hero-description">Создаю эффективные решения, работаю с данными и нахожу оптимальные подходы для реализации задач.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn">Связаться со мной</a>
+                    <a href="#services" class="btn">Мои услуги</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Бунчеев Егор" class="profile-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Обо мне</h2>
+                <p class="section-subtitle">Знакомство с моим образованием, навыками и подходом к работе</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Моя история</h3>
+                    <p>Привет! Я студент второго курса факультета информационных систем и технологий УлГТУ. Моя основная специализация — разработка программного обеспечения и анализ данных.</p>
+                    <p>Мне нравится находить оптимальные решения сложных задач, работать с информацией и создавать полезные продукты. Я постоянно учусь и развиваюсь в сфере IT.</p>
+                    
+                    <div class="skills-container">
+                        <h3>Мои навыки</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Анализ данных</span>
+                            <span class="skill-tag">Веб-разработка</span>
+                            <span class="skill-tag">Решение задач</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Рабочее место" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Мои услуги</h2>
+                <p class="section-subtitle">Что я могу предложить для решения ваших задач</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Веб-разработка" style="width:100%; border-radius:8px;">
+                    <h3 class="service-title">Веб-разработка</h3>
+                    <p>Создание современных веб-сайтов и приложений с использованием фреймворка Django и других технологий.</p>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Лабораторные работы" style="width:100%; border-radius:8px;">
+                    <h3 class="service-title">Написание лабораторных работ</h3>
+                    <p>Качественное выполнение лабораторных работ с подробным объяснением и выбором оптимальных решений.</p>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Решение задач" style="width:100%; border-radius:8px;">
+                    <h3 class="service-title">Решение практических задач</h3>
+                    <p>Решение задач по различным предметам с глубоким погружением в тему и качественным подходом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Контакты</h2>
+                <p class="section-subtitle">Свяжитесь со мной удобным для вас способом</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Email" style="width:60px; height:60px; border-radius:50%; margin:0 auto 15px;">
+                    <h3 class="contact-title">Email</h3>
+                    <a href="mailto:buncheevegor1994@gmail.com" style="color:var(--text); text-decoration:none;">buncheevegor1994@gmail.com</a>
+                </div>
+                
+                <div class="contact-card">
+                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Телефон" style="width:60px; height:60px; border-radius:50%; margin:0 auto 15px;">
+                    <h3 class="contact-title">Телефон</h3>
+                    <a href="tel:+79276317952" style="color:var(--text); text-decoration:none;">+7 (927) 631-79-52</a>
+                </div>
+                
+                <div class="contact-card">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Адрес" style="width:60px; height:60px; border-radius:50%; margin:0 auto 15px;">
+                    <h3 class="contact-title">Адрес</h3>
+                    <p>г. Ульяновск, ул. Скочилова, д. 7</p>
+                </div>
+                
+                <div class="contact-card">
+                    <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Часы работы" style="width:60px; height:60px; border-radius:50%; margin:0 auto 15px;">
+                    <h3 class="contact-title">Часы работы</h3>
+                    <p>Пн-Пт: 9:00 - 18:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Бунчеев Егор</div>
+            <p>Студент УлГТУ, специализирующийся на разработке и анализе данных.</p>
+            <p class="copyright">© 2025 Бунчеев Егор. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
