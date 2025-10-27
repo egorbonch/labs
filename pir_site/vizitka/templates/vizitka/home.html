@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чайная Лавка | Премиальный чай</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --light: #FFF8F0;
+            --dark: #3E2723;
+            --text: #5D4037;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 248, 240, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* Герой секция */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(210, 105, 30, 0.1) 100%);
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .hero-description {
+            margin-bottom: 30px;
+        }
+        
+        .hero-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Секции */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        /* Сетки */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .benefit-item i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: var(--primary);
+        }
+        
+        /* Секция О нас */
+        .about-section {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(210, 105, 30, 0.05) 100%);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-content h3 {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
+        /* Футер */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content, .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-leaf"></i>
+                Чайная Лавка
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#about-tea">О чае</a></li>
+                <li><a href="#products">Товары</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Насладитесь искусством чаепития</h1>
+                <p class="hero-description">Откройте для себя мир изысканных чаев со всего мира. Мы тщательно отбираем каждый сорт, чтобы предложить вам только лучшее.</p>
+                <a href="#products" class="btn">Выбрать чай</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://avatars.mds.yandex.net/i?id=6d8c2ad6d09a9f8385875e3360762c3df4394e33-5419040-images-thumbs&n=13">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Обо мне</h2>
+                <p>Общая информация</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Обо мне</h3>
+                    <p>Меня зовут Пирогов Алексей, я студент 2 курса УЛГТУ. В свободное время я увлекаюсь чайной культурой и готов помочь вам открыть для себя мир чая!</p>
+                    <p>Я занимаюсь чаем с 15 лет, имею большой опыт в выборе качественного сырья и создании уникальных смесей.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://avatars.mds.yandex.net/i?id=825847ba5644dfa1485d7ef7f2ea4d143e838538-12752969-images-thumbs&n=13">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-tea">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Искусство чаепития</h2>
+                <p>Погрузитесь в мир ароматов и вкусов</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Чайная философия</h3>
+                    <p>Я верю, что чай - это не просто напиток, а целая культура, искусство и способ общения. Каждая чашка чая рассказывает историю места его происхождения.</p>
+                    <div class="benefit-item">
+                        <i class="fas fa-seedling"></i>
+                        <span>Натуральное происхождение</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-award"></i>
+                        <span>Высокое качество</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Прямые поставки из стран-производителей</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-recycle"></i>
+                        <span>Экологичная упаковка</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://avatars.mds.yandex.net/i?id=3706c17f134f63afba37d079c04d4af83094f23a-8425660-images-thumbs&n=13" alt="Чайные листья" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Популярные товары</h2>
+                <p>Самые востребованные сорта чая</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://avatars.mds.yandex.net/i?id=e96061aa66832ce548caaad21643ade2372f6e1b-5286188-images-thumbs&n=13" alt="Дарджилинг" class="card-img">
+                    <div class="card-content">
+                        <h3>Дарджилинг</h3>
+                        <p>Элитный черный чай с цветочным ароматом, собранный в предгорьях Гималаев. Имеет нежный вкус с мускатными нотками.</p>
+                        <div class="product-price">499 ₽ / 100г</div>
+                        <button class="btn add-to-cart">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://avatars.mds.yandex.net/i?id=ef0d74b2c45d2cba9e9aff91783015bd228672a1-5665339-images-thumbs&n=13" alt="Жасминовый" class="card-img">
+                    <div class="card-content">
+                        <h3>Жасминовый жемчуг</h3>
+                        <p>Зеленый чай с нежным ароматом жасмина. Скрученные вручную листья раскрываются при заваривании, создавая неповторимый букет.</p>
+                        <div class="product-price">349 ₽ / 100г</div>
+                        <button class="btn add-to-cart">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://avatars.mds.yandex.net/i?id=1656a069a89cf48d441b03cdb27013dcda24ca79-5221421-images-thumbs&n=13" alt="Улун" class="card-img">
+                    <div class="card-content">
+                        <h3>Молочный улун</h3>
+                        <p>Полуферментированный чай с кремово-сливочным вкусом и нежным молочным послевкусием.</p>
+                        <div class="product-price">555 ₽ / 100г</div>
+                        <button class="btn add-to-cart">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="https://avatars.mds.yandex.net/i?id=fac21340a6bd7f907ae63dc0fe86aaa1b8025aa7-5236530-images-thumbs&n=13" alt="Пуэр" class="card-img">
+                    <div class="card-content">
+                        <h3>Выдержанный пуэр</h3>
+                        <p>Выдержанный чай с землистым вкусом и глубоким ароматом. Идеален для ценителей насыщенных вкусов.</p>
+                        <div class="product-price">679 ₽ / 100г</div>
+                        <button class="btn add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Контакты</h2>
+                <p>Свяжитесь с нами</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+                        <p>г. Ульяновск, пр-кт Гая, д.88</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-phone"></i> Телефон</h3>
+                        <a href="tel:+79022199949">+7 (902) 219-99-49</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-envelope"></i> Email</h3>
+                        <a href="mailto:info@cha-lavka.ru">info@cha-lavka.ru</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-clock"></i> Время работы</h3>
+                        <p>Пн-Пт: 10:00-20:00</p>
+                        <p>Сб-Вс: 11:00-19:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Чайная Лавка. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Добавление товаров в корзину
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                this.textContent = 'Добавлено!';
+                setTimeout(() => {
+                    this.textContent = 'В корзину';
+                }, 2000);
+            });
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
